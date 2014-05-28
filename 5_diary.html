@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>To Do</title>
+    <style>
+      article {
+        border: solid 1px black;
+        margin-bottom: 1em;
+        padding: 0.5em;
+      }
+      article header {
+        font-weight: bold;
+        margin-bottom: 0.5em;
+        cursor: hand;
+      }
+      .preferred {
+        background: yellow;
+      }
+      .preferred-button {
+        margin-left: 0.5em;
+      }
+      article div {
+        margin-bottom: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Diary</h1>
+    <h2>My new post</h2>
+    <input type="text" id="post_title" value=""><br>
+    <textarea id="post_body" rows="8" cols="40"></textarea><br>
+    <button name="button" id="create">Add</button>
+    <h2 id="old_posts">Old posts</h2>
+
+    <script src="javascripts/jquery.js"></script>
+    <script charset="utf-8">
+      $(document).ready(function() {
+        var tasks = $('#tasks');
+        $('#create').click(function() {
+
+          // 4: i campi non devono essere vuoti
+          if ($('#post_title').val() == '' ||
+              $('#post_body').val() == '') {
+            alert('Inserire il titolo ed il contenuto!')
+            return;
+          }
+
+          // 1: crea l'articolo e lo aggiunge dopo il titolo
+          var article = $('<article>');
+          var header = $('<header>');
+          header.html($('#post_title').val());
+          var body = $('<div>');
+          body.html($('#post_body').val());
+          article.append(header);
+          article.append(body);
+
+          // 2: rimuove l'articolo
+          var removeButton = $('<a>', {html: 'Remove', class: 'remove-button', href: '#'});
+          removeButton.click(function() {
+            // 7: aggiunge l'animazione
+            article.fadeOut(500);
+            article.remove();
+          });
+          article.append(removeButton);
+
+          // 5: collapse
+          header.click(function() {
+            body.toggle();
+            removeButton.toggle();
+            preferredButton.toggle();
+          });
+
+          // 6: preferred
+          var preferredButton = $('<a>', {html: 'Preferred', class: 'preferred-button', href: '#'});
+          preferredButton.click(function() {
+            article.toggleClass('preferred');
+          });
+          article.append(preferredButton);
+
+          // 3: svuota i campi
+          $('#post_title').val('');
+          $('#post_body').val('');
+
+          $(article).insertAfter('#old_posts');
+        });
+      });
+    </script>
+  </body>
+</html>

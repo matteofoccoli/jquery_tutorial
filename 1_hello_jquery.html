@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Demo</title>
+</head>
+
+<body>
+  <a href="http://jquery.com/">Hello jQuery</a>
+  <script src="javascripts/jquery.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("a").click(function(event) {
+        alert("Hello jQuery!");
+        event.preventDefault();
+      });
+    });
+  </script>
+</body>
+
+</html>

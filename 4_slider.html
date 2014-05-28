@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <label for="age">Your age:</label>
+    <input type="text" name="age" value="">
+    <button id="increase">+</button>
+    <button id="decrease">-</button>
+    <br>
+    <button id="submit">Submit</button>
+
+    <script src="javascripts/jquery.js"></script>
+    <script charset="utf-8">
+      $(document).ready(function() {
+        var age = $('input:text').val() || 0
+        $('#increase').on('click', function() {
+          age++;
+          $('input:text').val(age);
+        });
+        $('#decrease').on('click', function() {
+          if (age > 0) {
+            age--;
+            $('input:text').val(age);
+          }
+        });
+        $('#submit').on('click', function() {
+          alert("You're old! You're " + age + " years old!");
+        });
+      });
+    </script>
+  </body>
+</html>

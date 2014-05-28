@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>To Do</title>
+  </head>
+  <body>
+    <label for="task">My new task:</label>
+    <input type="text" name="task" value="">
+    <button name="button" id="add_button">Add</button>
+    <hr>
+    <ul id="tasks"></ul>
+    <script src="javascripts/jquery.js"></script>
+    <script charset="utf-8">
+      $(document).ready(function() {
+        var tasks = $('#tasks');
+        $('#add_button').click(function() {
+          console.log('Adding new task');
+          var newTask = $('input[type=text]').val();
+          tasks.append('<li>' + newTask + '</li>');
+        });
+      });
+    </script>
+  </body>
+</html>
